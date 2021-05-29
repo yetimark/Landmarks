@@ -10,10 +10,10 @@ import SwiftUI
 struct LandmarkDetail: View {
     var landmark: Landmark
     var body: some View {
-        VStack {
+        ScrollView {
             MapView(locationCoordinate: landmark.locationCoordinate)
                 .ignoresSafeArea(edges: .top)
-                .frame(height: 200)
+                .frame(height: 300)
             
             CircleImage(image: landmark.image)
                 .offset(y: -130)
@@ -32,7 +32,7 @@ struct LandmarkDetail: View {
                 
                 Divider()
                 
-                Text("About " + landmark.name)
+                Text("About \(landmark.name)")
                     .font(.title2)
                 Text(landmark.description)
             }
@@ -40,6 +40,8 @@ struct LandmarkDetail: View {
             
             Spacer()
         }
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
